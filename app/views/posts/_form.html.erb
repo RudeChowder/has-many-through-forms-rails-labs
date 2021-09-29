@@ -1,5 +1,4 @@
-<h1>New Post</h1>
-<%= form_for @post do |form| %>
+<%= form_for post do |form| %>
   <%= form.label :title %>
   <%= form.text_field :title %>
   <br>
@@ -9,7 +8,7 @@
   <br>
 
   <%= form.label :categories %>:<br>
-  <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+  <%= form.collection_check_boxes :category_ids, @categories, :id, :name %>
   <br>
   <%= form.fields_for :categories do |categories_builder| %>
     <% categories_builder.text_field :name %>
