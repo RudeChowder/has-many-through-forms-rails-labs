@@ -9,19 +9,19 @@
   <li><%= comment.user.username %> says: <%= comment.content %></li>
 <% end %>
 <h3>Users</h3>
-<%= @post.users.uniq.each do |user| %>
+<% @post.users.uniq.each do |user| %>
   <li><%= link_to user.username, user %></li>
 <% end %>
 <br>
 
-<%= form_for @post.comments.build do |form| %>
+<%= form_for Comment.new do |form| %>
   <%= form.hidden_field :post_id, value: @post.id %>
 
   <%= form.label :user %>
   <%= form.collection_select :user_id, User.all, :id, :username %>
   <br>
 
-  <%= form.fields_for :user_attributes do |user_builder| %>
+  <%= form.fields_for :user, User.new do |user_builder| %>
     <%= user_builder.label :username %>
     <%= user_builder.text_field :username %>
   <% end %>
